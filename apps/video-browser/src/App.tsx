@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePlayerStore, useUIStore } from '@streamhub/shared-store';
 import { VideoCard, Tabs, Dropdown, Spinner } from '@streamhub/shared-ui';
 import { Channel } from '@streamhub/shared-types';
+import activeChannelIds from '../../packages/shared-utils/src/active-channels.json';
 
 const MOCK_CHANNELS: Channel[] = [
   {
@@ -155,7 +156,15 @@ export default function App() {
             ...MOCK_CHANNELS.filter(m => !existingIds.has(m.id)),
             ...merged
           ];
-          setChannels(withMocks);
+          
+          // Filter by active channels list, always ensuring core mocks are whitelisted!
+          const activeIdsSet = new Set([
+            ...MOCK_CHANNELS.map(m => m.id),
+            ...activeChannelIds
+          ]);
+          const activeOnly = withMocks.filter(c => activeIdsSet.has(c.id));
+
+          setChannels(activeOnly);
         }
       } catch (err) {
         console.warn('IPTV-org API load failed. Using offline fallback mocks.', err);
