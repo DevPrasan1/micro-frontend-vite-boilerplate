@@ -21,8 +21,8 @@ We use **npm workspaces** to connect them. When you run `npm install` at the roo
 To avoid duplicating code, everything reusable is split into isolated packages. They do not contain any business screens; they only contain building blocks.
 
 * **`shared-types`**: TypeScript interfaces (like `User`, `Channel`, `Comment`). This ensures all apps agree on what data looks like.
-* **`shared-utils`**: Pure functions (like formatting dates or view counts, throttling, or flags).
-* **`shared-store`**: Our state management using **Zustand**. Instead of one giant store, we have small modular stores for Authentication, Player Controls, and UI layouts.
+* **`shared-utils`**: Pure helper utilities (like formatting dates, views, throttling, or flags) and holds the parsed **`YT_CHANNELS`** database exported from `yt-videos.json`.
+* **`shared-store`**: State management using **Zustand**. Includes small modular stores for Auth, Player, and UI. States are attached to window-level scope (e.g., `window.__streamhub_player_store__`) to ensure a single shared instance propagates across MFE boundaries.
 * **`shared-hooks`**: Custom React hooks (like `useAuth()`, `usePlayer()`) that apps call to interact with Zustand stores.
 * **`shared-ui`**: Our Design System. Contains components like `Button`, `Card`, `Modal`, `Spinner`, `VideoCard`, and `CommentCard` built with Tailwind CSS.
 * **`firebase`**: Code to initialize Firebase Auth and Firestore.
@@ -79,9 +79,9 @@ Instead, they communicate using the **Shared Store**:
       └──────────────┘     └──────────────┘   └────────────┘
 ```
 
-1. **Video Browser MFE** displays a list of channels. When you click one, it updates the `selectedChannel` in the shared store.
+1. **Video Browser MFE** displays a list of video cards loaded from the YouTube comedy dataset. When you click one, it updates the `selectedChannel` in the shared store.
 2. The Host observes this change and navigates the user to `/watch/:channelId`.
-3. **Player MFE** detects that `selectedChannel` has been updated in the shared store and immediately initiates HLS playback.
-4. **Community MFE** detects the new channel and fetches corresponding comments from Firestore.
+3. **Player MFE** detects that `selectedChannel` has been updated in the shared store. If it is a standard HLS link, it starts playback; if it is a YouTube link, it dynamically embeds the YouTube iframe player with customized parameters.
+4. **Community MFE** detects the new video ID and loads the corresponding message chats from Firestore.
 
 If the **Player MFE** crashes, the Host's `ErrorBoundary` catches the crash and displays a fallback, while the rest of the application (Header, Sidebar, Community chat) continues to function normally!

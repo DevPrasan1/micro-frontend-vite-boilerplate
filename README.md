@@ -59,17 +59,10 @@ Storybook
 
 ## Data
 
-IPTV-org
-
-Channel metadata
-
-HLS URLs
-
-Countries
-
-Languages
-
-Categories
+* YouTube Video CSV
+* Dynamic JSON Parsing
+* Category Tag Inference
+* Active Stream verification
 
 ---
 
@@ -473,35 +466,15 @@ updatedAt
 
 ---
 
-# 12. IPTV-org
+# 12. YouTube Video Library & Scripts
 
-Use
+The application manages data using a parsed JSON library, **`yt-videos.json`**, populated from your YouTube CSV extracts:
 
-```
-channels.json
+### Video Parsing (`scripts/parse-csv.js`)
+A Node utility script that parses standard YouTube export sheets, strips formatting commas on numeric views, runs category regex heuristics to group clips by actor, and exports them directly into `packages/shared-utils/src/yt-videos.json`.
 
-streams.json
-
-countries.json
-
-languages.json
-
-categories.json
-```
-
-Merge
-
-```
-Channel
-
-+
-
-Stream URL
-
-↓
-
-Video Card
-```
+### Stream Verification (`scripts/check-streams.js`)
+An offline worker pool verifier that tests IPTV streams concurrently, limits timeouts to 10s, logs testing updates, and executes periodic auto-saves after every 500 checked streams to prevent data loss.
 
 ---
 

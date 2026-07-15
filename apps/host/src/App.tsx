@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuthStore, usePlayerStore, useUIStore } from '@streamhub/shared-store';
 import { Button, Avatar, Search, Spinner } from '@streamhub/shared-ui';
+import { YT_CHANNELS } from '@streamhub/shared-utils';
 
 // Lazy load Remotes
 const VideoBrowserApp = React.lazy(() => import('video_browser/VideoBrowserApp'));
@@ -28,12 +29,17 @@ class ErrorBoundary extends React.Component<
   override render() {
     if (this.state.hasError) {
       return (
-        <div className="p-6 bg-red-950/20 border border-red-900 rounded-xl text-red-200 mt-4">
-          <h2 className="text-lg font-bold">MFE Load Error</h2>
-          <p className="text-sm mt-1">Something went wrong while rendering this micro-frontend component.</p>
-          <Button variant="danger" className="mt-4" onClick={() => this.setState({ hasError: false })}>
+        <div className="flex flex-col items-center justify-center p-8 bg-zinc-950/80 rounded-xl border border-zinc-800 text-center m-6 min-h-[400px]">
+          <h2 className="text-xl font-bold text-zinc-100 mb-2">MFE Load Error</h2>
+          <p className="text-zinc-400 text-sm max-w-sm mb-6">
+            Something went wrong while rendering this micro-frontend component.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition font-medium text-sm shadow-md"
+          >
             Retry
-          </Button>
+          </button>
         </div>
       );
     }
@@ -45,93 +51,24 @@ class ErrorBoundary extends React.Component<
 function WatchPage() {
   const { channelId } = useParams<{ channelId: string }>();
   const { selectedChannel, setSelectedChannel } = usePlayerStore();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!selectedChannel && channelId) {
-      const fetchChannelDetails = async () => {
-        try {
-          setLoading(true);
-          const localMocks: Record<string, any> = {
-            nasa: {
-              id: 'nasa',
-              name: 'NASA TV',
-              url: 'https://nasatv-lh.akamaihd.net/i/NASA_101@319270/index_1000_av-p.m3u8',
-              category: 'Science'
-            },
-            france24: {
-              id: 'france24',
-              name: 'France 24 English',
-              url: 'https://static.france24.com/live/F24_EN_LO_HLS/live_tv.m3u8',
-              category: 'News'
-            },
-            dw: {
-              id: 'dw',
-              name: 'Deutsche Welle English',
-              url: 'https://dwstream72-lh.akamaihd.net/i/dwtv_eng@352781/master.m3u8',
-              category: 'News'
-            },
-            sky: {
-              id: 'sky',
-              name: 'Sky News UK',
-              url: 'https://sky-news.akamaihd.net/i/skynews_1@39281/master.m3u8',
-              category: 'News'
-            }
-          };
-
-          if (localMocks[channelId]) {
-            setSelectedChannel(localMocks[channelId]);
-            return;
-          }
-
-          // Fetch from live IPTV database
-          const streamsRes = await fetch('https://iptv-org.github.io/api/streams.json');
-          if (!streamsRes.ok) throw new Error();
-          const streams = await streamsRes.json();
-          const targetStream = streams.find((s: any) => s.channel === channelId);
-
-          if (targetStream) {
-            const channelsRes = await fetch('https://iptv-org.github.io/api/channels.json');
-            if (channelsRes.ok) {
-              const channelsData = await channelsRes.json();
-              const ch = channelsData.find((c: any) => c.id === channelId);
-              if (ch) {
-                setSelectedChannel({
-                  id: ch.id,
-                  name: ch.name,
-                  url: targetStream.url,
-                  category: ch.categories?.[0] ? ch.categories[0].charAt(0).toUpperCase() + ch.categories[0].slice(1) : 'General'
-                });
-                return;
-              }
-            }
-          }
-
-          // Fallback if not found
-          setSelectedChannel({
-            id: channelId,
-            name: `Live Channel #${channelId}`,
-            url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
-            category: 'Entertainment',
-          });
-        } catch (err) {
-          console.warn('Failed to resolve channel details on page reload:', err);
-          setSelectedChannel({
-            id: channelId,
-            name: `Live Channel #${channelId}`,
-            url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
-            category: 'Entertainment',
-          });
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchChannelDetails();
+      const found = YT_CHANNELS.find((c: any) => c.id === channelId);
+      if (found) {
+        setSelectedChannel(found);
+      } else {
+        setSelectedChannel({
+          id: channelId,
+          name: `Live Channel #${channelId}`,
+          url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
+          category: 'Entertainment',
+        });
+      }
     }
   }, [channelId, selectedChannel, setSelectedChannel]);
 
-  if (loading || !selectedChannel) {
+  if (!selectedChannel) {
     return (
       <div className="flex items-center justify-center h-full">
         <Spinner />

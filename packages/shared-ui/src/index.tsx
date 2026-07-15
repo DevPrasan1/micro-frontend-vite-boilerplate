@@ -160,18 +160,6 @@ export const VideoCard: React.FC<VideoCardProps> = ({ channel, onClick, classNam
           <p className="text-zinc-400 text-xs mt-1 truncate">
             {channel.category || 'Live Stream'}
           </p>
-          <div className="flex gap-2 mt-2">
-            {channel.country && (
-              <span className="text-[10px] bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded border border-zinc-700">
-                {channel.country}
-              </span>
-            )}
-            {channel.language && (
-              <span className="text-[10px] bg-zinc-800 text-zinc-300 px-1.5 py-0.5 rounded border border-zinc-700">
-                {channel.language.toUpperCase()}
-              </span>
-            )}
-          </div>
         </div>
       </div>
     </div>

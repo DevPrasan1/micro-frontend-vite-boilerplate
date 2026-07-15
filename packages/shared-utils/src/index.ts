@@ -56,3 +56,7 @@ export function throttle<T extends (...args: any[]) => void>(
     }
   };
 }
+
+import shemarooVideos from './yt-videos.json';
+
+export const YT_CHANNELS = shemarooVideos;
