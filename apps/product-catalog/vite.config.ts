@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'community',
+      name: 'product_catalog',
       filename: 'remoteEntry.js',
       exposes: {
-        './CommunityApp': './src/App.tsx',
+        './ProductCatalogApp': './src/App.tsx',
       },
       shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
     }),

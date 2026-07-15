@@ -1,12 +1,12 @@
 {
-  "name": "@mfe/video-browser",
+  "name": "@mfe/product-reviews",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5001 --strictPort",
+    "dev": "vite --port 5003 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --port 5001 --strictPort"
+    "preview": "vite preview --port 5003 --strictPort"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -15,7 +15,8 @@
     "@mfe/shared-utils": "*",
     "@mfe/shared-store": "*",
     "@mfe/shared-hooks": "*",
-    "@mfe/shared-ui": "*"
+    "@mfe/shared-ui": "*",
+    "@mfe/mock-api": "*"
   },
   "devDependencies": {
     "@originjs/vite-plugin-federation": "^1.3.6",

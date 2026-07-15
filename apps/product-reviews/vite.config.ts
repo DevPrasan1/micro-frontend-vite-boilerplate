@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'player',
+      name: 'product_reviews',
       filename: 'remoteEntry.js',
       exposes: {
-        './PlayerApp': './src/App.tsx',
+        './ProductReviewsApp': './src/App.tsx',
       },
       shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
     }),

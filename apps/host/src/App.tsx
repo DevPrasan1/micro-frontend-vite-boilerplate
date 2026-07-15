@@ -49,9 +49,9 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
 }
 
 // Lazy load Remotes
-const VideoBrowserApp = React.lazy(() => import('video_browser/VideoBrowserApp'));
-const PlayerApp = React.lazy(() => import('player/PlayerApp'));
-const CommunityApp = React.lazy(() => import('community/CommunityApp'));
+const VideoBrowserApp = React.lazy(() => import('product_catalog/ProductCatalogApp'));
+const PlayerApp = React.lazy(() => import('product_details/ProductDetailsApp'));
+const CommunityApp = React.lazy(() => import('product_reviews/ProductReviewsApp'));
 
 // Product Detail Page container
 function ProductPage() {

@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'video_browser',
+      name: 'product_details',
       filename: 'remoteEntry.js',
       exposes: {
-        './VideoBrowserApp': './src/App.tsx',
+        './ProductDetailsApp': './src/App.tsx',
       },
       shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
     }),

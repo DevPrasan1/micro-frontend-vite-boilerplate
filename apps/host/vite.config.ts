@@ -9,9 +9,9 @@ function watchRemoteEntries() {
     name: 'watch-remote-entries',
     configureServer(server: any) {
       const dirs = [
-        { path: path.resolve(__dirname, '../video-browser/dist/assets'), watching: false },
-        { path: path.resolve(__dirname, '../player/dist/assets'), watching: false },
-        { path: path.resolve(__dirname, '../community/dist/assets'), watching: false },
+        { path: path.resolve(__dirname, '../product-catalog/dist/assets'), watching: false },
+        { path: path.resolve(__dirname, '../product-details/dist/assets'), watching: false },
+        { path: path.resolve(__dirname, '../product-reviews/dist/assets'), watching: false },
       ];
 
       const startWatching = () => {
@@ -48,9 +48,9 @@ export default defineConfig({
     federation({
       name: 'host',
       remotes: {
-        video_browser: 'http://localhost:5001/assets/remoteEntry.js',
-        player: 'http://localhost:5002/assets/remoteEntry.js',
-        community: 'http://localhost:5003/assets/remoteEntry.js',
+        product_catalog: 'http://localhost:5001/assets/remoteEntry.js',
+        product_details: 'http://localhost:5002/assets/remoteEntry.js',
+        product_reviews: 'http://localhost:5003/assets/remoteEntry.js',
       },
       shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
     }),
