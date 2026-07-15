@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./apps/*/index.html",
-    "./apps/*/src/**/*.{js,ts,jsx,tsx}",
-    "./packages/*/src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./apps/*/index.html', './apps/*/src/**/*.{js,ts,jsx,tsx}', './packages/*/src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -22,10 +18,10 @@ module.exports = {
           950: '#1e1b4b',
         },
         background: '#09090b', // zinc-950
-        surface: '#18181b',    // zinc-900
+        surface: '#18181b', // zinc-900
       },
     },
   },
   plugins: [],
   darkMode: 'class',
-}
+};

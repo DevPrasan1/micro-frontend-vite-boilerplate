@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -20,10 +18,10 @@ module.exports = {
           950: '#1e1b4b',
         },
         background: '#09090b', // zinc-950
-        surface: '#18181b',    // zinc-900
+        surface: '#18181b', // zinc-900
       },
     },
   },
   plugins: [],
   darkMode: 'class',
-}
+};

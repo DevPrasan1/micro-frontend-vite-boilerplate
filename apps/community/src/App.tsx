@@ -17,29 +17,29 @@ export default function App() {
     if (!channelId) return;
 
     // Listen to comments from Firestore for this video/channel
-    const q = query(
-      collection(db, 'comments'),
-      where('channelId', '==', channelId),
-      orderBy('createdAt', 'desc')
-    );
+    const q = query(collection(db, 'comments'), where('channelId', '==', channelId), orderBy('createdAt', 'desc'));
 
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const list: Comment[] = [];
-      snapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        list.push({
-          id: docSnap.id,
-          channelId: data.channelId,
-          uid: data.uid,
-          userName: data.userName,
-          message: data.message,
-          createdAt: data.createdAt,
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        const list: Comment[] = [];
+        snapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          list.push({
+            id: docSnap.id,
+            channelId: data.channelId,
+            uid: data.uid,
+            userName: data.userName,
+            message: data.message,
+            createdAt: data.createdAt,
+          });
         });
-      });
-      setComments(list);
-    }, (error) => {
-      console.error("Firestore loading error:", error);
-    });
+        setComments(list);
+      },
+      (error) => {
+        console.error('Firestore loading error:', error);
+      }
+    );
 
     return () => unsubscribe();
   }, [channelId]);
@@ -58,7 +58,7 @@ export default function App() {
       });
       setNewCommentText('');
     } catch (err) {
-      console.error("Failed to add comment:", err);
+      console.error('Failed to add comment:', err);
     }
   };
 
@@ -66,7 +66,7 @@ export default function App() {
     try {
       await deleteDoc(doc(db, 'comments', id));
     } catch (err) {
-      console.error("Failed to delete comment:", err);
+      console.error('Failed to delete comment:', err);
     }
   };
 
@@ -80,7 +80,7 @@ export default function App() {
     <div className="bg-zinc-900/40 border border-zinc-800 rounded-xl p-6 flex flex-col gap-6 text-zinc-100 h-[600px] overflow-hidden">
       <div className="flex justify-between items-center shrink-0">
         <h3 className="text-lg font-bold">Community Chat ({comments.length})</h3>
-        
+
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as 'newest' | 'oldest')}
@@ -97,7 +97,7 @@ export default function App() {
           type="text"
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
-          placeholder={user ? "Add a public comment..." : "Sign in to join the conversation..."}
+          placeholder={user ? 'Add a public comment...' : 'Sign in to join the conversation...'}
           disabled={!user}
           className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-indigo-500 transition disabled:opacity-50"
         />
@@ -110,12 +110,7 @@ export default function App() {
       <div className="flex-1 overflow-y-auto flex flex-col gap-4 pr-2 custom-scrollbar">
         {sortedComments.length > 0 ? (
           sortedComments.map((comment) => (
-            <CommentCard
-              key={comment.id}
-              comment={comment}
-              onDelete={handleDeleteComment}
-              currentUserId={user?.uid}
-            />
+            <CommentCard key={comment.id} comment={comment} onDelete={handleDeleteComment} currentUserId={user?.uid} />
           ))
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-zinc-500 gap-2">

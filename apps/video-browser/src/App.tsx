@@ -44,7 +44,7 @@ export default function App() {
           if (c.code) {
             infoMap[c.code.toUpperCase()] = {
               flag: c.flag || '🏳️',
-              name: c.name || c.code
+              name: c.name || c.code,
             };
           }
         });
@@ -83,8 +83,8 @@ export default function App() {
   const filteredChannels = channels.filter((channel: any) => {
     const matchesSearch = activeSearch
       ? channel.name.toLowerCase().includes(activeSearch.toLowerCase()) ||
-      channel.country.toLowerCase().includes(activeSearch.toLowerCase()) ||
-      (countryInfo[channel.country.toUpperCase()]?.name || '').toLowerCase().includes(activeSearch.toLowerCase())
+        channel.country.toLowerCase().includes(activeSearch.toLowerCase()) ||
+        (countryInfo[channel.country.toUpperCase()]?.name || '').toLowerCase().includes(activeSearch.toLowerCase())
       : true;
     const matchesCategory = activeCategory === 'All' || channel.category === activeCategory;
     return matchesSearch && matchesCategory;
@@ -92,10 +92,7 @@ export default function App() {
 
   // Calculate pagination coordinates
   const totalPages = Math.ceil(filteredChannels.length / itemsPerPage);
-  const paginatedChannels = filteredChannels.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const paginatedChannels = filteredChannels.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="flex flex-col gap-6">
@@ -112,65 +109,55 @@ export default function App() {
         <div className="flex flex-wrap items-center gap-4 shrink-0">
           {isStandalone && (
             <div className="w-full sm:w-64">
-              <Search
-                placeholder="Search name or country..."
-                onChange={(e) => setLocalSearch(e.target.value)}
-              />
+              <Search placeholder="Search name or country..." onChange={(e) => setLocalSearch(e.target.value)} />
             </div>
           )}
         </div>
       </div>
 
       {/* Channels Grid */}
-      {
-        loading ? (
-          <div className="flex justify-center p-12">
-            <Spinner />
-          </div>
-        ) : paginatedChannels.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {paginatedChannels.map((channel) => (
-              <VideoCard
-                key={channel.id}
-                channel={channel}
-                onClick={handleChannelClick}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 text-zinc-500 border border-zinc-800 border-dashed rounded-xl">
-            No channels match your filters.
-          </div>
-        )
-      }
+      {loading ? (
+        <div className="flex justify-center p-12">
+          <Spinner />
+        </div>
+      ) : paginatedChannels.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {paginatedChannels.map((channel) => (
+            <VideoCard key={channel.id} channel={channel} onClick={handleChannelClick} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-12 text-zinc-500 border border-zinc-800 border-dashed rounded-xl">
+          No channels match your filters.
+        </div>
+      )}
 
       {/* Pagination Bar */}
-      {
-        !loading && totalPages > 1 && (
-          <div className="flex items-center justify-between mt-6 bg-zinc-900/40 px-6 py-4 rounded-xl border border-zinc-800">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className="px-4 py-2 text-sm font-medium text-zinc-300 bg-zinc-850 hover:bg-zinc-800 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition"
-            >
-              ← Previous
-            </button>
+      {!loading && totalPages > 1 && (
+        <div className="flex items-center justify-between mt-6 bg-zinc-900/40 px-6 py-4 rounded-xl border border-zinc-800">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 text-sm font-medium text-zinc-300 bg-zinc-850 hover:bg-zinc-800 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition"
+          >
+            ← Previous
+          </button>
 
-            <span className="text-sm font-medium text-zinc-400 text-center">
-              Page <span className="text-zinc-200">{currentPage}</span> of <span className="text-zinc-200">{totalPages}</span>
-              <span className="hidden sm:inline"> ({filteredChannels.length} channels total)</span>
-            </span>
+          <span className="text-sm font-medium text-zinc-400 text-center">
+            Page <span className="text-zinc-200">{currentPage}</span> of{' '}
+            <span className="text-zinc-200">{totalPages}</span>
+            <span className="hidden sm:inline"> ({filteredChannels.length} channels total)</span>
+          </span>
 
-            <button
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 text-sm font-medium text-zinc-300 bg-zinc-850 hover:bg-zinc-800 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition"
-            >
-              Next →
-            </button>
-          </div>
-        )
-      }
-    </div >
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 text-sm font-medium text-zinc-300 bg-zinc-850 hover:bg-zinc-800 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition"
+          >
+            Next →
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

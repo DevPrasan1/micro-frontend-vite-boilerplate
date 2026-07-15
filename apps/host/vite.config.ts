@@ -11,7 +11,7 @@ function watchRemoteEntries() {
       const dirs = [
         { path: path.resolve(__dirname, '../video-browser/dist/assets'), watching: false },
         { path: path.resolve(__dirname, '../player/dist/assets'), watching: false },
-        { path: path.resolve(__dirname, '../community/dist/assets'), watching: false }
+        { path: path.resolve(__dirname, '../community/dist/assets'), watching: false },
       ];
 
       const startWatching = () => {
@@ -22,7 +22,7 @@ function watchRemoteEntries() {
                 if (filename === 'remoteEntry.js') {
                   server.ws.send({
                     type: 'full-reload',
-                    path: '*'
+                    path: '*',
                   });
                 }
               });
@@ -37,7 +37,7 @@ function watchRemoteEntries() {
       startWatching();
       // Periodically check if directories became available
       setInterval(startWatching, 2000);
-    }
+    },
   };
 }
 
@@ -54,7 +54,7 @@ export default defineConfig({
       },
       shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
     }),
-    watchRemoteEntries()
+    watchRemoteEntries(),
   ],
   build: {
     modulePreload: false,

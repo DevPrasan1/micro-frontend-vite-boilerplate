@@ -20,8 +20,8 @@ async function checkStream(url) {
       method: 'GET',
       signal: controller.signal,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-      }
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      },
     });
 
     clearTimeout(id);
@@ -41,8 +41,7 @@ async function main() {
     const streams = await streamsRes.json();
 
     // Filter streams that have valid channels
-    const candidateStreams = streams
-      .filter(s => s.channel && s.url && s.url.startsWith('http'))
+    const candidateStreams = streams.filter((s) => s.channel && s.url && s.url.startsWith('http'));
     // .slice(0, TEST_LIMIT);
 
     console.log(`Found ${streams.length} total streams. Testing the first ${candidateStreams.length} candidates...`);
@@ -74,7 +73,7 @@ async function main() {
         })
       );
 
-      results.forEach(res => {
+      results.forEach((res) => {
         if (res.ok) {
           activeChannels.push(res.channelId);
         }

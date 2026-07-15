@@ -3,17 +3,22 @@ import { BrowserRouter, Routes, Route, Link, useNavigate, useParams } from 'reac
 import { useAuthStore, usePlayerStore, useUIStore } from '@mfe/shared-store';
 import { Button, Avatar, Search, Spinner } from '@mfe/shared-ui';
 import { YT_CHANNELS } from '@mfe/shared-utils';
-import { auth, googleProvider, signInWithPopup, signOut, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@mfe/firebase';
+import {
+  auth,
+  googleProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from '@mfe/firebase';
 
 // Lazy load Remotes
 const VideoBrowserApp = React.lazy(() => import('video_browser/VideoBrowserApp'));
 const PlayerApp = React.lazy(() => import('player/PlayerApp'));
 const CommunityApp = React.lazy(() => import('community/CommunityApp'));
 
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  { hasError: boolean }
-> {
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: any) {
     super(props);
     this.state = { hasError: false };
@@ -24,7 +29,7 @@ class ErrorBoundary extends React.Component<
   }
 
   override componentDidCatch(error: any, errorInfo: any) {
-    console.error("ErrorBoundary caught an error", error, errorInfo);
+    console.error('ErrorBoundary caught an error', error, errorInfo);
   }
 
   override render() {
@@ -81,7 +86,13 @@ function WatchPage() {
     <div className="flex flex-col lg:flex-row gap-6 p-6">
       <div className="flex-1 min-w-0">
         <ErrorBoundary>
-          <Suspense fallback={<div className="h-[480px] bg-zinc-900 animate-pulse rounded-xl flex items-center justify-center text-zinc-500">Loading Player MFE...</div>}>
+          <Suspense
+            fallback={
+              <div className="h-[480px] bg-zinc-900 animate-pulse rounded-xl flex items-center justify-center text-zinc-500">
+                Loading Player MFE...
+              </div>
+            }
+          >
             <PlayerApp />
           </Suspense>
         </ErrorBoundary>
@@ -94,7 +105,13 @@ function WatchPage() {
 
       <div className="w-full lg:w-[400px] shrink-0">
         <ErrorBoundary>
-          <Suspense fallback={<div className="h-[300px] bg-zinc-900 animate-pulse rounded-xl flex items-center justify-center text-zinc-500">Loading Community MFE...</div>}>
+          <Suspense
+            fallback={
+              <div className="h-[300px] bg-zinc-900 animate-pulse rounded-xl flex items-center justify-center text-zinc-500">
+                Loading Community MFE...
+              </div>
+            }
+          >
             <CommunityApp />
           </Suspense>
         </ErrorBoundary>
@@ -116,7 +133,7 @@ function MainLayout() {
           displayName: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'Firebase User',
           email: firebaseUser.email || '',
           photoURL: firebaseUser.photoURL || undefined,
-          createdAt: firebaseUser.metadata.creationTime || new Date().toISOString()
+          createdAt: firebaseUser.metadata.creationTime || new Date().toISOString(),
         });
       } else {
         setUser(null);
@@ -128,7 +145,9 @@ function MainLayout() {
   }, [setUser, setLoading]);
 
   return (
-    <div className={`h-screen flex flex-col ${theme === 'dark' ? 'bg-background text-zinc-100' : 'bg-white text-zinc-900'}`}>
+    <div
+      className={`h-screen flex flex-col ${theme === 'dark' ? 'bg-background text-zinc-100' : 'bg-white text-zinc-900'}`}
+    >
       {/* Header */}
       <header className="h-16 border-b border-zinc-800 px-6 flex items-center justify-between shrink-0 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-40">
         <div className="flex items-center gap-4">
@@ -143,7 +162,9 @@ function MainLayout() {
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
               </svg>
             </div>
-            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">MFE Boilerplate</span>
+            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              MFE Boilerplate
+            </span>
           </Link>
         </div>
 
@@ -166,12 +187,20 @@ function MainLayout() {
       {/* Main Body */}
       <div className="flex-1 flex min-h-0 overflow-hidden">
         {/* Sidebar */}
-        <aside className={`${sidebarOpen ? 'w-64' : 'w-0 overflow-hidden'} shrink-0 border-r border-zinc-800 transition-all duration-300 flex flex-col bg-zinc-950/40`}>
+        <aside
+          className={`${sidebarOpen ? 'w-64' : 'w-0 overflow-hidden'} shrink-0 border-r border-zinc-800 transition-all duration-300 flex flex-col bg-zinc-950/40`}
+        >
           <nav className="p-4 flex flex-col gap-2">
-            <Link to="/" className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 transition font-medium">
+            <Link
+              to="/"
+              className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 transition font-medium"
+            >
               <span>🏠</span> Home
             </Link>
-            <Link to="/profile" className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 transition font-medium">
+            <Link
+              to="/profile"
+              className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100 transition font-medium"
+            >
               <span>👤</span> Profile
             </Link>
           </nav>
@@ -180,45 +209,63 @@ function MainLayout() {
         {/* Content Area */}
         <main className="flex-1 overflow-y-auto">
           <Routes>
-            <Route path="/" element={
-              <div className="p-6">
-                <h2 className="text-xl font-bold mb-4">Discover Live Streams</h2>
-                <ErrorBoundary>
-                  <Suspense fallback={<div className="flex justify-center p-12"><Spinner /></div>}>
-                    <VideoBrowserApp />
-                  </Suspense>
-                </ErrorBoundary>
-              </div>
-            } />
+            <Route
+              path="/"
+              element={
+                <div className="p-6">
+                  <h2 className="text-xl font-bold mb-4">Discover Live Streams</h2>
+                  <ErrorBoundary>
+                    <Suspense
+                      fallback={
+                        <div className="flex justify-center p-12">
+                          <Spinner />
+                        </div>
+                      }
+                    >
+                      <VideoBrowserApp />
+                    </Suspense>
+                  </ErrorBoundary>
+                </div>
+              }
+            />
             <Route path="/watch/:channelId" element={<WatchPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/profile" element={
-              <div className="p-6">
-                <h2 className="text-xl font-bold mb-4">Profile</h2>
-                {user ? (
-                  <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 max-w-md">
-                    <div className="flex items-center gap-4">
-                      <Avatar name={user.displayName} src={user.photoURL} className="w-16 h-16 text-xl" />
-                      <div>
-                        <h3 className="font-semibold text-lg">{user.displayName}</h3>
-                        <p className="text-zinc-400 text-sm">{user.email}</p>
+            <Route
+              path="/profile"
+              element={
+                <div className="p-6">
+                  <h2 className="text-xl font-bold mb-4">Profile</h2>
+                  {user ? (
+                    <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 max-w-md">
+                      <div className="flex items-center gap-4">
+                        <Avatar name={user.displayName} src={user.photoURL} className="w-16 h-16 text-xl" />
+                        <div>
+                          <h3 className="font-semibold text-lg">{user.displayName}</h3>
+                          <p className="text-zinc-400 text-sm">{user.email}</p>
+                        </div>
                       </div>
+                      <Button
+                        variant="danger"
+                        className="mt-6 w-full"
+                        onClick={async () => {
+                          try {
+                            await signOut(auth);
+                            setUser(null);
+                            navigate('/');
+                          } catch (err) {
+                            console.error('Sign out failed:', err);
+                          }
+                        }}
+                      >
+                        Sign Out
+                      </Button>
                     </div>
-                    <Button variant="danger" className="mt-6 w-full" onClick={async () => {
-                      try {
-                        await signOut(auth);
-                        setUser(null);
-                        navigate('/');
-                      } catch (err) {
-                        console.error("Sign out failed:", err);
-                      }
-                    }}>Sign Out</Button>
-                  </div>
-                ) : (
-                  <p className="text-zinc-400">Please sign in to view your profile.</p>
-                )}
-              </div>
-            } />
+                  ) : (
+                    <p className="text-zinc-400">Please sign in to view your profile.</p>
+                  )}
+                </div>
+              }
+            />
           </Routes>
         </main>
       </div>
@@ -272,9 +319,7 @@ function LoginPage() {
         </p>
 
         {error && (
-          <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-lg p-3 mb-4">
-            {error}
-          </div>
+          <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-lg p-3 mb-4">{error}</div>
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -328,7 +373,7 @@ function LoginPage() {
                 uid: 'demo-user-123',
                 displayName: 'Demo User',
                 email: 'demo@streamhub.io',
-                createdAt: new Date().toISOString()
+                createdAt: new Date().toISOString(),
               });
               navigate('/');
             }}

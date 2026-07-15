@@ -29,7 +29,7 @@ function parseCSV(csvText) {
         i++; // skip \n
       }
       currentRecord.push(currentField);
-      if (currentRecord.some(f => f.trim() !== '')) {
+      if (currentRecord.some((f) => f.trim() !== '')) {
         records.push(currentRecord);
       }
       currentRecord = [];
@@ -53,16 +53,38 @@ function inferCategory(title, description) {
   if (searchStr.includes('nana patekar') || searchStr.includes('नाना पाटेकर')) {
     return 'Nana Patekar';
   }
-  if (searchStr.includes('johnny lever') || searchStr.includes('johny lever') || searchStr.includes('जॉनी लीवर') || searchStr.includes('छोटाछत्री')) {
+  if (
+    searchStr.includes('johnny lever') ||
+    searchStr.includes('johny lever') ||
+    searchStr.includes('जॉनी लीवर') ||
+    searchStr.includes('छोटाछत्री')
+  ) {
     return 'Johnny Lever';
   }
-  if (searchStr.includes('rajpal yadav') || searchStr.includes('राजपाल यादव') || searchStr.includes('बाबूराव') || searchStr.includes('baburao') || searchStr.includes('paresh rawal') || searchStr.includes('परेश रावल')) {
+  if (
+    searchStr.includes('rajpal yadav') ||
+    searchStr.includes('राजपाल यादव') ||
+    searchStr.includes('बाबूराव') ||
+    searchStr.includes('baburao') ||
+    searchStr.includes('paresh rawal') ||
+    searchStr.includes('परेश रावल')
+  ) {
     return 'Paresh Rawal';
   }
-  if (searchStr.includes('govinda') || searchStr.includes('गोविंदा') || searchStr.includes('kader khan') || searchStr.includes('कादर खान')) {
+  if (
+    searchStr.includes('govinda') ||
+    searchStr.includes('गोविंदा') ||
+    searchStr.includes('kader khan') ||
+    searchStr.includes('कादर खान')
+  ) {
     return 'Govinda';
   }
-  if (searchStr.includes('sanjay mishra') || searchStr.includes('संजय मिश्रा') || searchStr.includes('arshad warsi') || searchStr.includes('अरशद वारसी')) {
+  if (
+    searchStr.includes('sanjay mishra') ||
+    searchStr.includes('संजय मिश्रा') ||
+    searchStr.includes('arshad warsi') ||
+    searchStr.includes('अरशद वारसी')
+  ) {
     return 'Sanjay Mishra';
   }
   return 'Bollywood Comedy';
@@ -114,7 +136,8 @@ async function main() {
       const category = inferCategory(videoTitle, description);
 
       // Default placeholder if thumbnail is missing
-      const defaultLogo = 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=600&q=80';
+      const defaultLogo =
+        'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=600&q=80';
 
       channels.push({
         // MFE Channel Required Fields
@@ -139,7 +162,7 @@ async function main() {
         duration,
         views,
         thumbnailUrl,
-        availabilityStatus
+        availabilityStatus,
       });
     }
 

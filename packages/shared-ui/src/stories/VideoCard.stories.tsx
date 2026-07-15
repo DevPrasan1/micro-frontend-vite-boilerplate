@@ -34,7 +34,7 @@ const mockChannel = {
   duration: '13:38',
   views: 6369,
   thumbnailUrl: 'https://i.ytimg.com/vi/Fl6HC6dMqHc/hqdefault.jpg',
-  availabilityStatus: 'available'
+  availabilityStatus: 'available',
 };
 
 export const Default: Story = {

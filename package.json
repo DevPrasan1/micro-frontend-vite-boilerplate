@@ -19,14 +19,24 @@
     "watch:player": "npm run build -w @mfe/player -- --watch",
     "watch:community": "npm run build -w @mfe/community -- --watch",
     "watch": "concurrently \"npm:watch:*\"",
-    "dev:mfe": "npm run build && concurrently \"npm run dev:host\" \"npm run preview -w @mfe/video-browser\" \"npm run preview -w @mfe/player\" \"npm run preview -w @mfe/community\" \"npm run watch:browser\" \"npm run watch:player\" \"npm run watch:community\""
+    "dev:mfe": "npm run build && concurrently \"npm run dev:host\" \"npm run preview -w @mfe/video-browser\" \"npm run preview -w @mfe/player\" \"npm run preview -w @mfe/community\" \"npm run watch:browser\" \"npm run watch:player\" \"npm run watch:community\"",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "concurrently": "^9.0.1",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.8",
+    "@eslint/js": "^9.11.1",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.0.1",
+    "eslint": "^9.11.1",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "globals": "^15.9.0",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13"
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.7.0",
+    "vite": "^5.4.8"
   }
 }

@@ -21,7 +21,12 @@ export const Search: React.FC<SearchProps> = ({ className = '', onSearch, ...pro
       />
       <div className="absolute left-3 top-2.5 text-zinc-400">
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
         </svg>
       </div>
     </div>
@@ -38,7 +43,10 @@ export const Dropdown: React.FC<DropdownProps> = ({ label, children, className =
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div className={`relative inline-block text-left ${className}`}>
-      <button onClick={() => setIsOpen(!isOpen)} className="bg-zinc-800 text-zinc-100 px-4 py-2 rounded-lg border border-zinc-700 hover:bg-zinc-700 transition">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="bg-zinc-800 text-zinc-100 px-4 py-2 rounded-lg border border-zinc-700 hover:bg-zinc-700 transition"
+      >
         {label}
       </button>
       {isOpen && (
@@ -126,7 +134,9 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
 // --- Spinner Component ---
 export const Spinner: React.FC<{ className?: string }> = ({ className = '' }) => {
   return (
-    <div className={`animate-spin rounded-full h-8 w-8 border-2 border-zinc-700 border-t-indigo-500 ${className}`}></div>
+    <div
+      className={`animate-spin rounded-full h-8 w-8 border-2 border-zinc-700 border-t-indigo-500 ${className}`}
+    ></div>
   );
 };
 
@@ -144,7 +154,11 @@ export const VideoCard: React.FC<VideoCardProps> = ({ channel, onClick, classNam
     >
       <div className="relative aspect-video bg-zinc-950 flex items-center justify-center overflow-hidden">
         {channel.logo ? (
-          <img src={channel.logo} alt={channel.name} className="object-cover w-full h-full group-hover:scale-105 transition duration-300" />
+          <img
+            src={channel.logo}
+            alt={channel.name}
+            className="object-cover w-full h-full group-hover:scale-105 transition duration-300"
+          />
         ) : (
           <span className="text-4xl text-zinc-700">📺</span>
         )}
@@ -157,9 +171,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ channel, onClick, classNam
           <h4 className="font-semibold text-sm text-zinc-100 truncate group-hover:text-indigo-400 transition">
             {channel.name}
           </h4>
-          <p className="text-zinc-400 text-xs mt-1 truncate">
-            {channel.category || 'Live Stream'}
-          </p>
+          <p className="text-zinc-400 text-xs mt-1 truncate">{channel.category || 'Live Stream'}</p>
         </div>
       </div>
     </div>
@@ -183,12 +195,13 @@ export const CommentCard: React.FC<CommentCardProps> = ({ comment, onDelete, cur
         <div className="flex justify-between items-start">
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
             <span className="font-medium text-sm text-zinc-100">{comment.userName}</span>
-            <span className="text-[10px] text-zinc-500">
-              {new Date(comment.createdAt).toLocaleString()}
-            </span>
+            <span className="text-[10px] text-zinc-500">{new Date(comment.createdAt).toLocaleString()}</span>
           </div>
           {currentUserId === comment.uid && onDelete && (
-            <button onClick={() => onDelete(comment.id)} className="text-zinc-500 hover:text-red-400 transition text-xs">
+            <button
+              onClick={() => onDelete(comment.id)}
+              className="text-zinc-500 hover:text-red-400 transition text-xs"
+            >
               Delete
             </button>
           )}

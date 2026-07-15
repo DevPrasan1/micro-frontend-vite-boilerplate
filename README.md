@@ -14,18 +14,18 @@
 
 This project demonstrates:
 
-* ✅ Micro-Frontend Architecture
-* ✅ Module Federation
-* ✅ Independent Deployment
-* ✅ Shared Authentication
-* ✅ Shared Global State
-* ✅ Shared Design System
-* ✅ Enterprise Folder Structure
-* ✅ YouTube Video Playback
-* ✅ Firebase Integration
-* ✅ Storybook
-* ✅ TypeScript
-* ✅ Clean Architecture
+- ✅ Micro-Frontend Architecture
+- ✅ Module Federation
+- ✅ Independent Deployment
+- ✅ Shared Authentication
+- ✅ Shared Global State
+- ✅ Shared Design System
+- ✅ Enterprise Folder Structure
+- ✅ YouTube Video Playback
+- ✅ Firebase Integration
+- ✅ Storybook
+- ✅ TypeScript
+- ✅ Clean Architecture
 
 ---
 
@@ -33,15 +33,15 @@ This project demonstrates:
 
 ## Frontend
 
-* React 19
-* TypeScript
-* Vite
-* Module Federation
-* React Router
-* Tailwind CSS
-* Zustand
-* React Hook Form
-* Zod
+- React 19
+- TypeScript
+- Vite
+- Module Federation
+- React Router
+- Tailwind CSS
+- Zustand
+- React Hook Form
+- Zod
 
 ---
 
@@ -49,8 +49,8 @@ This project demonstrates:
 
 Firebase
 
-* Authentication
-* Firestore
+- Authentication
+- Firestore
 
 ---
 
@@ -62,10 +62,10 @@ Storybook
 
 ## Data
 
-* YouTube Video CSV
-* Dynamic JSON Parsing
-* Category Tag Inference
-* Active Stream verification
+- YouTube Video CSV
+- Dynamic JSON Parsing
+- Category Tag Inference
+- Active Stream verification
 
 ---
 
@@ -126,9 +126,9 @@ Community
 
 Every team
 
-* develops independently
-* deploys independently
-* owns its domain
+- develops independently
+- deploys independently
+- owns its domain
 
 Exactly what Module Federation was designed for.
 
@@ -182,16 +182,16 @@ Everything reusable lives in packages.
 
 Owns
 
-* Authentication
-* Layout
-* Routing
-* Sidebar
-* Header
-* Theme
-* Error Boundary
-* Shared Zustand Store
-* Firebase Initialization
-* Dynamic Remote Loading
+- Authentication
+- Layout
+- Routing
+- Sidebar
+- Header
+- Theme
+- Error Boundary
+- Shared Zustand Store
+- Firebase Initialization
+- Dynamic Remote Loading
 
 Host never owns business logic.
 
@@ -201,12 +201,12 @@ Host never owns business logic.
 
 Responsibilities
 
-* Search
-* Filter
-* Categories
-* Recently Watched
-* Favorites
-* Video Grid
+- Search
+- Filter
+- Categories
+- Recently Watched
+- Favorites
+- Video Grid
 
 Consumes YouTube metadata database.
 
@@ -224,8 +224,8 @@ Nothing else.
 
 Responsibilities
 
-* YouTube Playback
-* Playback State synchronization
+- YouTube Playback
+- Playback State synchronization
 
 Consumes
 
@@ -239,13 +239,13 @@ selectedChannel
 
 Responsibilities
 
-* Comments
-* Replies
-* Like
-* Dislike
-* Edit
-* Delete
-* Sort
+- Comments
+- Replies
+- Like
+- Dislike
+- Edit
+- Delete
+- Sort
 
 Firestore
 
@@ -357,9 +357,9 @@ Firebase Authentication
 
 Methods
 
-* Google
-* Email Password
-* GitHub (optional)
+- Google
+- Email Password
+- GitHub (optional)
 
 Flow
 
@@ -466,9 +466,11 @@ updatedAt
 The application manages data using a parsed JSON library, **`yt-videos.json`**, populated from your YouTube CSV extracts:
 
 ### Video Parsing (`scripts/parse-csv.js`)
+
 A Node utility script that parses standard YouTube export sheets, strips formatting commas on numeric views, runs category regex heuristics to group clips by actor, and exports them directly into `packages/shared-utils/src/yt-videos.json`.
 
 ### Stream Verification (`scripts/check-streams.js`)
+
 An offline worker pool verifier that tests IPTV streams concurrently, limits timeouts to 10s, logs testing updates, and executes periodic auto-saves after every 500 checked streams to prevent data loss.
 
 ---
@@ -715,30 +717,30 @@ No direct communication between MFEs.
 
 ## Video Browser
 
-* Search
-* Category Filter
-* Favorites
-* Recently Watched
+- Search
+- Category Filter
+- Favorites
+- Recently Watched
 
 ---
 
 ## Player
 
-* YouTube Iframe Embed
-* Native playback controls (Play, Pause, Speed, Quality, Fullscreen)
+- YouTube Iframe Embed
+- Native playback controls (Play, Pause, Speed, Quality, Fullscreen)
 
 ---
 
 ## Community
 
-* Comments
-* Replies
-* Like
-* Dislike
-* Edit
-* Delete
-* Sort
-* Realtime
+- Comments
+- Replies
+- Like
+- Dislike
+- Edit
+- Delete
+- Sort
+- Realtime
 
 ---
 
@@ -804,13 +806,13 @@ Seek (where applicable)
 
 Version 2
 
-* Multi-view (2x2 or 3x3 live streams)
-* AI-generated video summaries (for VOD)
-* Stream health monitoring
-* Admin dashboard for channel management
-* Notifications
-* User roles (Viewer, Moderator, Admin)
-* Analytics MFE
-* Stream recording support
+- Multi-view (2x2 or 3x3 live streams)
+- AI-generated video summaries (for VOD)
+- Stream health monitoring
+- Admin dashboard for channel management
+- Notifications
+- User roles (Viewer, Moderator, Admin)
+- Analytics MFE
+- Stream recording support
 
 ---

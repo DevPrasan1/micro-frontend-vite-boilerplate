@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+storybook-static/
+*.log
+.firebase/
+package-lock.json
+.env
+.env.local
+.env.example
