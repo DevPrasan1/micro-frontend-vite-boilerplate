@@ -5,14 +5,8 @@ import { ProductCard, Tabs, Spinner, Search } from '@mfe/shared-ui';
 import { Product } from '@mfe/shared-types';
 
 export default function App() {
-  let navigate: any;
-  let params: any = {};
-  try {
-    navigate = useNavigate();
-    params = useParams<{ categoryName?: string }>();
-  } catch {
-    navigate = null;
-  }
+  const navigate = useNavigate();
+  const params = useParams<{ categoryName?: string }>();
 
   const { setSelectedProduct, activeCategory: storeCategory, setActiveCategory } = useProductStore();
   const activeCategory = params.categoryName || storeCategory || 'All';

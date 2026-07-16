@@ -7,17 +7,9 @@ export default function CategorySelector() {
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
-  let navigate: any;
-  let location: any;
-  let params: any = {};
-  try {
-    navigate = useNavigate();
-    location = useLocation();
-    params = useParams<{ categoryName?: string }>();
-  } catch {
-    navigate = null;
-    location = null;
-  }
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams<{ categoryName?: string }>();
 
   const activeCategory = params.categoryName || 'All';
 

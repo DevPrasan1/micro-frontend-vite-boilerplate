@@ -111,10 +111,10 @@ The CI/CD pipeline in `.github/workflows/ci.yml` **automatically deploys all 4 s
 
 ### Is it free?
 
-| Platform | Free Tier |
-|---|---|
+| Platform           | Free Tier                                                                  |
+| ------------------ | -------------------------------------------------------------------------- |
 | **GitHub Actions** | ✅ Unlimited minutes on **public repos**. 2,000 min/month on private repos |
-| **Netlify** | ✅ 300 build minutes/month, unlimited sites, 100GB bandwidth |
+| **Netlify**        | ✅ 300 build minutes/month, unlimited sites, 100GB bandwidth               |
 
 > This entire setup runs completely within both free tiers.
 
@@ -138,16 +138,16 @@ push to branch
 
 Go to **GitHub repo → Settings → Secrets and variables → Actions → New repository secret** and add:
 
-| Secret Name | How to get it |
-|---|---|
-| `NETLIFY_AUTH_TOKEN` | Netlify → User Settings → Applications → New access token |
-| `NETLIFY_SITE_ID_CATALOG` | Netlify catalog site → Site Configuration → Site ID |
-| `NETLIFY_SITE_ID_DETAILS` | Netlify details site → Site Configuration → Site ID |
-| `NETLIFY_SITE_ID_REVIEWS` | Netlify reviews site → Site Configuration → Site ID |
-| `NETLIFY_SITE_ID_HOST` | Netlify host site → Site Configuration → Site ID |
-| `VITE_REMOTE_CATALOG` | `https://<catalog-site>.netlify.app/assets/remoteEntry.js` |
-| `VITE_REMOTE_DETAILS` | `https://<details-site>.netlify.app/assets/remoteEntry.js` |
-| `VITE_REMOTE_REVIEWS` | `https://<reviews-site>.netlify.app/assets/remoteEntry.js` |
+| Secret Name               | How to get it                                              |
+| ------------------------- | ---------------------------------------------------------- |
+| `NETLIFY_AUTH_TOKEN`      | Netlify → User Settings → Applications → New access token  |
+| `NETLIFY_SITE_ID_CATALOG` | Netlify catalog site → Site Configuration → Site ID        |
+| `NETLIFY_SITE_ID_DETAILS` | Netlify details site → Site Configuration → Site ID        |
+| `NETLIFY_SITE_ID_REVIEWS` | Netlify reviews site → Site Configuration → Site ID        |
+| `NETLIFY_SITE_ID_HOST`    | Netlify host site → Site Configuration → Site ID           |
+| `VITE_REMOTE_CATALOG`     | `https://<catalog-site>.netlify.app/assets/remoteEntry.js` |
+| `VITE_REMOTE_DETAILS`     | `https://<details-site>.netlify.app/assets/remoteEntry.js` |
+| `VITE_REMOTE_REVIEWS`     | `https://<reviews-site>.netlify.app/assets/remoteEntry.js` |
 
 ### One-time Bootstrap Setup
 
@@ -157,4 +157,3 @@ Before the pipeline can run, create the 4 empty Netlify sites **manually once**:
 2. Create 4 sites (can upload any placeholder zip — just to get the Site IDs)
 3. Copy the Site IDs into your GitHub secrets
 4. Push to trigger the automated pipeline — it will overwrite with the real builds
-
