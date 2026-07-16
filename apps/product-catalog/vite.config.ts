@@ -12,6 +12,7 @@ export default defineConfig({
       exposes: {
         './ProductCatalogApp': './src/App.tsx',
         './CategorySelector': './src/CategorySelector.tsx',
+        './RelatedProducts': './src/components/RelatedProducts.tsx',
       },
       shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
     }),

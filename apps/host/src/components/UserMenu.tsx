@@ -23,7 +23,7 @@ export default function UserMenu() {
   return (
     <Button onClick={() => navigate('/login')}>
       <span>🔐</span>
-      <span className="hidden sm:inline font-medium text-sm">Sign In</span>
+      <span className="hidden sm:inline font-medium text-sm"> Sign In</span>
     </Button>
   );
 }

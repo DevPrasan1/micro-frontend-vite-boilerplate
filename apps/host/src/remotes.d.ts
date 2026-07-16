@@ -8,6 +8,11 @@ declare module 'product_catalog/CategorySelector' {
   export default Component;
 }
 
+declare module 'product_catalog/RelatedProducts' {
+  const Component: React.ComponentType;
+  export default Component;
+}
+
 declare module 'product_details/ProductDetailsApp' {
   const Component: React.ComponentType;
   export default Component;

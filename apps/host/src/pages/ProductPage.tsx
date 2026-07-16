@@ -1,18 +1,17 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useProductStore, useUIStore } from '@mfe/shared-store';
-import { Spinner, ProductCard } from '@mfe/shared-ui';
+import { Spinner } from '@mfe/shared-ui';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 
 const ProductDetailsApp = React.lazy(() => import('product_details/ProductDetailsApp'));
 const ProductReviewsApp = React.lazy(() => import('product_reviews/ProductReviewsApp'));
+const RelatedProductsApp = React.lazy(() => import('product_catalog/RelatedProducts'));
 
 export default function ProductPage() {
   const { productId } = useParams<{ productId: string }>();
   const { selectedProduct, setSelectedProduct } = useProductStore();
   const { theme } = useUIStore();
-  const navigate = useNavigate();
-  const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
 
   useEffect(() => {
     if (productId) {
@@ -29,21 +28,7 @@ export default function ProductPage() {
     }
   }, [productId, setSelectedProduct]);
 
-  useEffect(() => {
-    if (selectedProduct) {
-      const fetchRelated = async () => {
-        try {
-          const res = await fetch(`https://dummyjson.com/products/category/${selectedProduct.category}?limit=5`);
-          const data = await res.json();
-          const filtered = (data.products || []).filter((p: any) => p.id !== selectedProduct.id);
-          setRelatedProducts(filtered.slice(0, 4));
-        } catch (err) {
-          console.error('Failed to fetch related products:', err);
-        }
-      };
-      fetchRelated();
-    }
-  }, [selectedProduct]);
+
 
   if (!selectedProduct) {
     return (
@@ -98,25 +83,17 @@ export default function ProductPage() {
       </div>
 
       {/* Related Products Section */}
-      {relatedProducts.length > 0 && (
-        <div className={`border-t pt-8 ${theme === 'dark' ? 'border-zinc-850' : 'border-zinc-200'}`}>
-          <h3 className={`text-xl font-bold mb-6 ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-800'}`}>
-            Customers Also Viewed
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {relatedProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onClick={(p) => {
-                  setSelectedProduct(p);
-                  navigate(`/product/${p.id}`);
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      <ErrorBoundary>
+        <Suspense
+          fallback={
+            <div className="h-[200px] animate-pulse bg-zinc-100 dark:bg-zinc-900 rounded-xl flex items-center justify-center text-zinc-400">
+              Loading Related Products...
+            </div>
+          }
+        >
+          <RelatedProductsApp />
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
