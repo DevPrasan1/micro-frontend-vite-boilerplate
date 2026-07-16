@@ -41,25 +41,32 @@ function watchRemoteEntries() {
   };
 }
 
-export default defineConfig({
-  envDir: '../../',
-  plugins: [
-    react(),
-    federation({
-      name: 'host',
-      remotes: {
-        product_catalog: 'http://localhost:5001/assets/remoteEntry.js',
-        product_details: 'http://localhost:5002/assets/remoteEntry.js',
-        product_reviews: 'http://localhost:5003/assets/remoteEntry.js',
-      },
-      shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
-    }),
-    watchRemoteEntries(),
-  ],
-  build: {
-    modulePreload: false,
-    target: 'esnext',
-    minify: false,
-    cssCodeSplit: false,
-  },
+export default defineConfig(({ mode }) => {
+  // Remote URLs: set VITE_REMOTE_* env vars in Netlify dashboard for production
+  const catalogUrl = process.env.VITE_REMOTE_CATALOG || 'http://localhost:5001/assets/remoteEntry.js';
+  const detailsUrl = process.env.VITE_REMOTE_DETAILS || 'http://localhost:5002/assets/remoteEntry.js';
+  const reviewsUrl = process.env.VITE_REMOTE_REVIEWS || 'http://localhost:5003/assets/remoteEntry.js';
+
+  return {
+    envDir: '../../',
+    plugins: [
+      react(),
+      federation({
+        name: 'host',
+        remotes: {
+          product_catalog: catalogUrl,
+          product_details: detailsUrl,
+          product_reviews: reviewsUrl,
+        },
+        shared: ['react', 'react-dom', 'zustand', 'react-router-dom', '@mfe/shared-store'],
+      }),
+      watchRemoteEntries(),
+    ],
+    build: {
+      modulePreload: false,
+      target: 'esnext',
+      minify: false,
+      cssCodeSplit: false,
+    },
+  };
 });

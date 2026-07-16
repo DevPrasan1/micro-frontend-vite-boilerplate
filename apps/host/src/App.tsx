@@ -592,17 +592,6 @@ function LoginPage() {
           <Button variant="secondary" className="w-full" onClick={handleGoogleSignIn}>
             Sign In with Google
           </Button>
-
-          <button
-            className="text-xs text-zinc-500 hover:text-zinc-300 underline transition cursor-pointer text-center"
-            onClick={async () => {
-              const guestUser = await fetchDummyUser(1); // Fetch default user Emily
-              setUser(guestUser);
-              navigate('/');
-            }}
-          >
-            Continue as Guest (Demo Account)
-          </button>
         </div>
 
         <p className="text-xs text-center text-zinc-500 mt-6">
