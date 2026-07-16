@@ -12,6 +12,14 @@
 >
 > 🚀 **Deployment Guide**: For instructions on deploying the host and remotes to Netlify, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
+## Preview & Screenshots
+
+| Homepage (Light Theme) | Homepage (Dark Theme) | Cart Dropdown |
+| :---: | :---: | :---: |
+| ![Home Light](./assets/screenshots/home_1.jpeg) | ![Home Dark](./assets/screenshots/home_1_dark_theme.jpeg) | ![Cart](./assets/screenshots/product_cart.jpeg) |
+| **Product Detail** | **Customer Reviews** | **Sign In Screen** |
+| ![Details](./assets/screenshots/product_detail_top_1.jpeg) | ![Reviews](./assets/screenshots/product_detail_bottom.jpeg) | ![Sign In](./assets/screenshots/login_1.jpeg) |
+
 ---
 
 ## 1. Project Goals
