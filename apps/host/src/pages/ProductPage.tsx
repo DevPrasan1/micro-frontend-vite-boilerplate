@@ -61,7 +61,7 @@ export default function ProductPage() {
             <Suspense
               fallback={
                 <div
-                  className={`h-[480px] animate-pulse rounded-xl flex items-center justify-center border ${
+                  className={`w-full h-[480px] animate-pulse rounded-xl flex items-center justify-center border ${
                     theme === 'dark'
                       ? 'bg-zinc-900 border-zinc-800 text-zinc-500'
                       : 'bg-white border-zinc-200 text-zinc-400'
@@ -81,7 +81,7 @@ export default function ProductPage() {
             <Suspense
               fallback={
                 <div
-                  className={`h-[300px] animate-pulse rounded-xl flex items-center justify-center border ${
+                  className={`w-full h-[300px] animate-pulse rounded-xl flex items-center justify-center border ${
                     theme === 'dark'
                       ? 'bg-zinc-900 border-zinc-800 text-zinc-500'
                       : 'bg-white border-zinc-200 text-zinc-400'
