@@ -43,6 +43,7 @@ jobs:
     needs: quality
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    environment: Netlify
 
     steps:
       - uses: actions/checkout@v4
@@ -75,6 +76,7 @@ jobs:
     needs: quality
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    environment: Netlify
 
     steps:
       - uses: actions/checkout@v4
@@ -107,6 +109,7 @@ jobs:
     needs: quality
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    environment: Netlify
 
     steps:
       - uses: actions/checkout@v4
@@ -143,6 +146,7 @@ jobs:
     needs: [deploy-catalog, deploy-details, deploy-reviews]
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    environment: Netlify
 
     steps:
       - uses: actions/checkout@v4
