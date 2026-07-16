@@ -1,19 +1,5 @@
 # 🚀 React Vite Module Federation Boilerplate (Micro Frontend)
 
-> **A production-ready Micro Frontend (MFE) boilerplate built with React 19, Vite, Module Federation, TypeScript, Storybook 10, Zustand, and a local Mock API.**
->
-> 🌐 **Live Production Demo**: [micro-frontend-vite-boilerplate.netlify.app](https://micro-frontend-vite-boilerplate.netlify.app/)
->
-> **A production-inspired E-Commerce Product Catalog platform built with React, Vite, Module Federation, Storybook, Zustand, and a local Mock API.**
->
-> The goal of this project is to demonstrate how a large enterprise e-commerce application can be split into independently developed and deployed Micro-Frontends (MFEs).
->
-> 📖 **Developer Workflows**: For instructions on running standalone commands, integrated hot-rebuild environments, and workspace scripts cataloging, refer to [workflow.md](./workflow.md).
->
-> 🏗️ **MFE Boilerplate Guide**: To use this repository as a template or boilerplate for your own React Module Federation monorepo, see [BOILERPLATE.md](./BOILERPLATE.md).
->
-> 🚀 **Deployment Guide**: For instructions on deploying the host and remotes to Netlify, see [DEPLOYMENT.md](./DEPLOYMENT.md).
-
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Netlify-success?style=for-the-badge&logo=netlify)](https://micro-frontend-vite-boilerplate.netlify.app/)
 
 [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
@@ -23,13 +9,28 @@
 [![Storybook](https://img.shields.io/badge/Storybook-10-ff69b4?logo=storybook)](https://storybook.js.org/)
 [![License](https://img.shields.io/badge/license-MIT-green)](#-license)
 
+> **A production-ready Micro Frontend (MFE) boilerplate built with React 19, Vite, Module Federation, TypeScript, Storybook 10, Zustand, and a local Mock API.**
+>
+> 🌐 **Live Production Demo**: [micro-frontend-vite-boilerplate.netlify.app](https://micro-frontend-vite-boilerplate.netlify.app/)
+>
+> **A complete E-Commerce Product Catalog demonstrating real-world Micro Frontend architecture built with React, Vite, Module Federation, Storybook, Zustand, and a local Mock API.**
+>
+> The goal of this project is to demonstrate how a large enterprise e-commerce application can be split into independently developed and deployed Micro-Frontends (MFEs).
+>
+> 📖 **Developer Workflows**: For instructions on running standalone commands, integrated hot-rebuild environments, and workspace scripts cataloging, refer to [workflow.md](./workflow.md).
+>
+> 🏗️ **MFE Boilerplate Guide**: To use this repository as a template or boilerplate for your own React Module Federation monorepo, see [BOILERPLATE.md](./BOILERPLATE.md).
+>
+> 🚀 **Deployment Guide**: For instructions on deploying the host and remotes to Netlify, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+
 
 
 ## 📌 Table of Contents
 
 - [✨ Features](#-features)
 - [Preview & Screenshots](#preview--screenshots)
-- [💡 Why This Boilerplate?](#-why-this-boilerplate)
+- [💡 Why this boilerplate?](#-why-this-boilerplate)
 - [🚀 Use This Repository](#-use-this-repository)
 - [🚀 Getting Started](#-getting-started)
 - [🏗️ High-Level Architecture](#️-high-level-architecture)
@@ -45,18 +46,16 @@
 
 ## ✨ Features
 
-- ✅ **React 19 & TypeScript 5** – Clean domain types and standard React 19 component structures.
-- ✅ **Vite 5** – Sub-second Hot Module Replacement (HMR) and optimized build outputs.
-- ✅ **Module Federation** – Dynamic runtime script sharing and remote application loading using `@originjs/vite-plugin-federation`.
-- ✅ **Dynamic Remotes** – Resilient mounting and error boundary isolation across all micro-frontends.
-- ✅ **Shared Zustand Store** – Global state synchronization across MFE boundaries mapped to browser `window` context.
-- ✅ **Storybook 10** – Isolated playground and documentation for shared design system UI components.
-- ✅ **Tailwind CSS & PostCSS** – Unified, utility-first styling token patterns across apps and packages.
-- ✅ **Authentication Flow** – Unified mock login session details shared dynamically at runtime.
-- ✅ **Theme Switching** – Instant light/dark theme toggles synchronized across remote boundaries.
-- ✅ **Mock Backend Services** – Persistent simulated client-side database utilizing browser `localStorage`.
-- ✅ **CI/CD Quality Controls** – Automation workflows for formatting, compilation safety, and lint validation.
-- ✅ **Independent Deployments** – Independently buildable and deployable MFE container and remotes.
+- ⚛️ React 19
+- ⚡ Vite
+- 🧩 Module Federation
+- 📦 Shared Zustand Store
+- 🎨 Storybook 10
+- 🔐 Authentication
+- 🌙 Dark Mode
+- 🛒 Shopping Cart
+- 📱 Responsive
+- 🚀 Independent Deployment
 
 ---
 
@@ -70,16 +69,16 @@
 | **Cart Dropdown** | **Sign In Screen** |
 | ![Cart](./assets/screenshots/product_cart.jpeg) | ![Sign In](./assets/screenshots/login_1.jpeg) |
 
-## 💡 Why This Boilerplate?
+## 💡 Why this boilerplate?
 
-Most Micro Frontend examples available online are:
+Most Module Federation examples are:
 
-- limited to simple demos
-- based on Webpack
-- missing shared state management
-- difficult to extend for production use
+- outdated
+- webpack only
+- incomplete
+- not production ready
 
-This project demonstrates how to structure a scalable React application using Vite and Module Federation with patterns commonly found in enterprise environments.
+This repository demonstrates how to build scalable React Micro Frontends using Vite, Module Federation, Storybook, and Zustand with an enterprise-ready project structure.
 
 ---
 
@@ -195,24 +194,17 @@ npm run storybook
 
 ## 🤝 Contributing
 
-Contributions are welcome!
+Contributions, issues and feature requests are welcome.
 
-If you find a bug or have an idea for an improvement:
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a Pull Request
-
-Issues and feature requests are always welcome.
+If you'd like to improve this project, feel free to open an Issue or Pull Request.
 
 ---
 
 ## ⭐ Support
 
-If this project helps you, consider giving it a ⭐ on GitHub.
+If this project helped you, consider giving it a star.
 
-It helps others discover the project and motivates future improvements.
+It helps more developers discover the project.
 
 ---
 
