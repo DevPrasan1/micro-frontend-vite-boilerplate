@@ -5,6 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MFE Boilerplate - Video Management Platform</title>
+    <!-- Google tag (gtag.js) -->
+    <script>
+      const gaId = '%VITE_GA_ID%';
+      if (gaId && gaId !== '%VITE_GA_ID%') {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function() { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', gaId);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -165,6 +165,7 @@ jobs:
           VITE_REMOTE_CATALOG: ${{ vars.VITE_REMOTE_CATALOG }}
           VITE_REMOTE_DETAILS: ${{ vars.VITE_REMOTE_DETAILS }}
           VITE_REMOTE_REVIEWS: ${{ vars.VITE_REMOTE_REVIEWS }}
+          VITE_GA_ID: ${{ vars.VITE_GA_ID }}
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3

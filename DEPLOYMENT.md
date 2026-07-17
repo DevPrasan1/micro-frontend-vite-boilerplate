@@ -71,6 +71,7 @@ In your **Host Netlify site → Site Settings → Environment Variables**, add:
 | `VITE_REMOTE_CATALOG` | `https://mfe-catalog.netlify.app/assets/remoteEntry.js` |
 | `VITE_REMOTE_DETAILS` | `https://mfe-details.netlify.app/assets/remoteEntry.js` |
 | `VITE_REMOTE_REVIEWS` | `https://mfe-reviews.netlify.app/assets/remoteEntry.js` |
+| `VITE_GA_ID`          | `G-XXXXXX` (your Google Analytics ID)            |
 
 > Replace the URLs with your actual Netlify site URLs after deployment.
 
